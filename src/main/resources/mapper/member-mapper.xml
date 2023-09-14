@@ -3,7 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Member">
-
+    <insert id="save" parameterType="member" useGeneratedKeys="true" keyProperty="id">
+        insert into member1_table(memberEmail,memberPassword,memberName,memberMobile,fileAttached)
+            values(#{memberEmail},#{memberPassword},#{memberName},#{memberMobile},#{fileAttached})
+    </insert>
+    <insert id="saveFile" parameterType="memberFile">
+        insert into member1_file_table(originalFileName, storedFileName, memberId)
+        values (#{originalFileName}, #{storedFileName}, #{memberId})
+    </insert>
 </mapper>
 
 

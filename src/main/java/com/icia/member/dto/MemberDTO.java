@@ -3,7 +3,6 @@ package com.icia.member.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 @Getter
@@ -15,5 +14,6 @@ public class MemberDTO {
     private String memberPassword;
     private String memberName;
     private String memberMobile;
+    private int fileAttached;
     private MultipartFile memberProfile;
 }
