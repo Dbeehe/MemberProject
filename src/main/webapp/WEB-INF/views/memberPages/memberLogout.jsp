@@ -9,21 +9,10 @@
 <body>
 <%@include file="component/header.jsp" %>
 <%@include file="component/nav.jsp" %>
-    <a href="/member/save">save</a>
-    <a href="/member/login">login</a>
-    <a href="/board/list">list</a>
-
+<form action="/member/logout" method="post">
+  <input type="text" name="memberPassword" placeholder="비밀번호입력">
+  <input type="submit" value="로그아웃">
+</form>
 <%@include file="component/footer.jsp" %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

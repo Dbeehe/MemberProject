@@ -11,6 +11,12 @@
         insert into member1_file_table(originalFileName, storedFileName, memberId)
         values (#{originalFileName}, #{storedFileName}, #{memberId})
     </insert>
+    <select id="login" parameterType="member" resultType="member">
+        select * from member1_table where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
+    </select>
+    <select id="findPass" parameterType="String" resultType="member">
+        select * from member1_table where memberEmail=#{memberEmail}
+    </select>
 </mapper>
 
 

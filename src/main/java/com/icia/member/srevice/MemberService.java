@@ -56,4 +56,22 @@ public class MemberService {
             memberRepository.saveFile(memberFileDTO);
         }
     }
+
+    public boolean login(MemberDTO memberDTO) {
+        MemberDTO dto = memberRepository.login(memberDTO);
+        if (dto != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean findPass(String memberPassword) {
+        MemberDTO dto = memberRepository.findPass(memberPassword);
+        if (dto != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
