@@ -7,11 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
-<%@include file="component/header.jsp" %>
-<%@include file="component/nav.jsp" %>
+<%@include file="../component/header.jsp" %>
+<%@include file="../component/nav.jsp" %>
 <div class="section">
   <form action="/board/write" method="post" enctype="multipart/form-data">
-    <input type="text" name="boardWriter" value="${sessionScope.loginEmail}"><br>
+    <input type="text" name="boardWriter" value="${sessionScope.loginEmail}" readonly><br>
     <input type="text" name="boardTitle" placeholder="제목"><br>
     <input type="text" name="memberPassword" placeholder="비밀번호 입력"><br>
     <textarea name="boardContents" cols="30" rows="10"></textarea> <br>
@@ -19,6 +19,6 @@
     <input type="submit" value="글쓰기"><br>
   </form>
 </div>
-<%@include file="component/footer.jsp" %>
+<%@include file="../component/footer.jsp" %>
 </body>
 </html>

@@ -29,4 +29,6 @@ public class MemberRepository {
     public MemberDTO findPass(String memberPassword) {
         return sql.selectOne("Member.findPass", memberPassword);
     }
+
+
 }

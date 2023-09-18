@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+    <update id="updateHits" parameterType="Long">
+        update board1_table set boardHits = boardHits + 1 where id = #{id}
+    </update>
+    <select id="findFile" parameterType="Long" resultType="boardFile">
+        select * from board1_file_table where boardId = #{boardId}
+    </select>
+    <select id="findAll" resultType="board">
+        select id, boardTitle, boardWriter,
+               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardHits
+        from board1_table order by id desc
+    </select>
+    <select id="findById" parameterType="Long" resultType="board">
+        select id, boardTitle, boardWriter,
+               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardHits
+        from board1_table where id=#{id} order by id desc
+    </select>
+    <insert id="write" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+        insert into board1_table(boardTitle,boardWriter,boardContents,boardHits,boardFileAttached)
+            values(#{boardTitle},#{boardWriter},#{boardContents},#{boardHits},#{boardFileAttached})
+    </insert>
+    <insert id="saveFile" parameterType="boardFile">
+        insert into board1_file_table(originalFileName1, storedFileName1, boardId)
+        values (#{originalFileName1}, #{storedFileName1}, #{boardId})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

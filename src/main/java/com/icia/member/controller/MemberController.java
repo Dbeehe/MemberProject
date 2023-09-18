@@ -24,7 +24,7 @@ public class MemberController {
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) throws IOException {
         memberService.save(memberDTO);
-        return "redirect:/member/Login";
+        return "redirect:/member/login";
     }
 
     @GetMapping("/login")
@@ -37,27 +37,18 @@ public class MemberController {
         boolean loginResult = memberService.login(memberDTO);
         if(loginResult){
             session.setAttribute("loginEmail",memberDTO.getMemberEmail());
-            model.addAttribute("email",memberDTO.getMemberEmail());
-            return "boardPages/boardList"; // redirect로 바꾸기
+            return "redirect:/board/list"; // redirect로 바꾸기
         }else{
             return "memberPages/memberLogin";
         }
     }
 
     @GetMapping("/logout")
-    public String logoutForm(){
-        return "memberPages/memberLogout";
+    public String logout(HttpSession session){
+        session.removeAttribute("loginEmail");
+        return "redirect:/";
     }
 
-    @PostMapping("/logout")
-    public String logout(@RequestParam("memberPassword")String memberPassword ,HttpSession session){
-        boolean logoutResult = memberService.findPass(memberPassword);
-        if(logoutResult){
-            session.removeAttribute("loginEmail");
-            return "redirect:/";
-        }else {
-            return  "redirect:/member/logout";
-        }
-    }
+
 
 }
