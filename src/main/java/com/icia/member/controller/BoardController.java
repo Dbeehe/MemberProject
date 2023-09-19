@@ -42,18 +42,38 @@ public class BoardController {
                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                            @RequestParam(value = "q", required = false, defaultValue = "") String q,
                            @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type,
-                           Model model){
+                           Model model) {
 //        조회수
         boardService.updateHits(id);
         BoardDTO boardDTO = boardService.findById(id);
-        model.addAttribute("boardFileList",boardDTO);
+        model.addAttribute("board", boardDTO);
 //        파일가져오기
         if (boardDTO.getBoardFileAttached() == 1) {
             List<BoardFileDTO> boardFileDTOList = boardService.findFile(id);
             model.addAttribute("boardFileList", boardFileDTOList);
         }
+
+        model.addAttribute("q", q);
+        model.addAttribute("type", type);
+        model.addAttribute("page", page);
         return "boardPages/boardDetail";
     }
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "boardPages/boardUpdate";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        boardService.update(boardDTO);
+//        BoardDTO dto = boardService.findById(boardDTO.getId());
+//        model.addAttribute("board", dto);
+//        return "boardPages/boardDetail";
+        return "redirect:/board?id=" + boardDTO.getId();
+    }
+
 }
 
 

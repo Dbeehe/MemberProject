@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="nav">
   <ul class="menu">
     <li class="menu-item">
-      <a href="/">index</a>
+      <a href="/">index${sessionScope.loginEmail}</a>
     </li>
     <c:if test="${sessionScope.loginEmail == null}">
       <li class="menu-item">

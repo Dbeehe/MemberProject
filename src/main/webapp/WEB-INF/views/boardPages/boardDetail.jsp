@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -33,22 +34,35 @@
       <th>contents</th>
       <td>${board.boardContents}</td>
     </tr>
-    <c:if test="${board.boardFileAttached == 1}">
-      <tr>
+      <c:if test="${board.boardFileAttached == 1}">
+       <tr>
         <th>image</th>
-        <td>
-          <c:forEach items="${boardFileList}" var="boardFile">
+          <td>
+           <c:forEach items="${boardFileList}" var="boardFile">
             <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName1}"
-                 alt="" width="100" height="100">
-          </c:forEach>
-        </td>
-      </tr>
+               alt="" width="100" height="100">
+            </c:forEach>
+          </td>
+       </tr>
     </c:if>
   </table>
-  <button onclick="board_list()">목록</button>
-  <button onclick="board_update()">수정</button>
-  <button onclick="board_delete()">삭제</button>
+    <c:if test="${board.boardWriter == sessionScope.loginEmail}">
+      <button class="btn btn-primary" onclick="board_update()">수정</button>
+      <button class="btn btn-danger" onclick="board_delete()">삭제</button>
+    </c:if>
+
+  <a href="/board/list">목록으로 돌아가기</a>
 </div>
 <%@include file="../component/footer.jsp" %>
 </body>
+<script>
+  const board_update = () => {
+    const id = '${board.id}';
+    location.href = "/board/update?id=" + id;
+  }
+  const board_delete = () => {
+    const id = '${board.id}';
+    location.href = "/board/delete?id=" + id;
+  }
+</script>
 </html>

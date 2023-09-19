@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class BoardRepository {
+public class
+BoardRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
@@ -39,5 +40,9 @@ public class BoardRepository {
 
     public List<BoardFileDTO> findFile(Long boardId) {
         return sql.selectList("Board.findFile", boardId);
+    }
+
+    public void update(BoardDTO boardDTO) {
+        sql.update("Board.update",boardDTO);
     }
 }

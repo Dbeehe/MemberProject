@@ -15,8 +15,8 @@
         from board1_table order by id desc
     </select>
     <select id="findById" parameterType="Long" resultType="board">
-        select id, boardTitle, boardWriter,
-               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardHits
+        select id, boardTitle, boardWriter,boardContents,
+               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardHits, boardFileAttached
         from board1_table where id=#{id} order by id desc
     </select>
     <insert id="write" parameterType="board" useGeneratedKeys="true" keyProperty="id">
@@ -27,6 +27,10 @@
         insert into board1_file_table(originalFileName1, storedFileName1, boardId)
         values (#{originalFileName1}, #{storedFileName1}, #{boardId})
     </insert>
+    <update id="update" parameterType="board">
+        update board1_table set boardTitle=#{boardTitle}, boardContents=#{boardContents}
+        where id = #{id}
+    </update>
 </mapper>
 
 

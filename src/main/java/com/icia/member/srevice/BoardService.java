@@ -55,4 +55,8 @@ public class BoardService {
     public List<BoardFileDTO> findFile(Long id) {
         return boardRepository.findFile(id);
     }
+
+    public void update(BoardDTO boardDTO) {
+        boardRepository.update(boardDTO);
+    }
 }
