@@ -17,6 +17,19 @@
     <select id="findPass" parameterType="String" resultType="member">
         select * from member1_table where memberEmail=#{memberEmail}
     </select>
+    <update id="update" parameterType="member">
+        update member1_table set memberName=#{memberName}, memberMobile=#{memberMobile}
+        where memberEmail=#{memberEmail}
+    </update>
+    <select id="findByEmail" parameterType="String" resultType="member">
+        select * from member1_table where memberEmail=#{memberEmail}
+    </select>
+    <select id="findAll" resultType="member">
+        select * from member1_table
+    </select>
+    <delete id="delete" parameterType="Long">
+        delete from member1_table where id=#{id}
+    </delete>
 </mapper>
 
 

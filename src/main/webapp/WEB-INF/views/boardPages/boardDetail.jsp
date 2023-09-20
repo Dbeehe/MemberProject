@@ -50,6 +50,9 @@
       <button class="btn btn-primary" onclick="board_update()">수정</button>
       <button class="btn btn-danger" onclick="board_delete()">삭제</button>
     </c:if>
+  <c:if test="${sessionScope.loginEmail == 'admin'}">
+    <button class="btn btn-danger" onclick="board_delete()">삭제</button>
+  </c:if>
 
   <a href="/board/list">목록으로 돌아가기</a>
 </div>
